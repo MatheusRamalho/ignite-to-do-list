@@ -59,11 +59,16 @@ export default createGlobalStyle`
         font-family: var(--font-family);
         font-size: var(--font-base);
         line-height: var(--font-lh);
+        color: var(--gray-200);
     }
 
-    .content {
+    main {
         max-width: 1024px;
         margin: 0 auto;
         padding-top: 8rem;
+    }
+
+    .content {
+        margin-top: 2rem;
     }
 `;

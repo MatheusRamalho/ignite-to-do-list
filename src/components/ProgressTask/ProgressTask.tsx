@@ -9,7 +9,7 @@ export const ProgressTask = ({ tasks, completedTasks }: ProgressTaskProps) => {
             </div>
 
             <div className="">
-                Concluídas <span> {completedTasks} </span>
+                Concluídas <span> {completedTasks} de {tasks} </span>
             </div>
         </ProgressTaskWrapper>
     );

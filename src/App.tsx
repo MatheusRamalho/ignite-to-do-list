@@ -12,13 +12,17 @@ export const App = () => {
 			<div className="wrapper">
 				<NewTask />
 
-				<main className="content">
+				<main className="main">
 					<ProgressTask
 						tasks={100}
 						completedTasks={25}
 					/>
 
-					<Task />
+					<div className="content">
+						<Task />
+						<Task />
+						<Task />
+					</div>
 				</main>
 			</div>
 		</div>

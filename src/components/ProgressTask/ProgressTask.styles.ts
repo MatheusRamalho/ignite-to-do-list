@@ -21,16 +21,14 @@ export const ProgressTaskWrapper = styled.div`
         }
 
         span {
-            width: 2.5rem;
-            height: 2rem;
-            padding: 0.5rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 999px;
             background-color: var(--gray-400);
 
-            font-size: var(--font-sm);
+            font-size: var(--font-md);
             color: var(--gray-200);
 
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
         }
