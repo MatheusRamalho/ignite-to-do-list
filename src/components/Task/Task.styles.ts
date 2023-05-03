@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TaskWrapper = styled.div`
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1.5rem;
 
     padding: 1.5rem;
@@ -64,6 +64,8 @@ export const TaskWrapper = styled.div`
     }
 
     p {
+        flex: 1;
+        
         font-size: var(--font-base);
         color: var(--gray-100);
         line-height: 160%;

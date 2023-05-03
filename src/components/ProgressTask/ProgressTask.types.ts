@@ -1,4 +1,4 @@
 export type ProgressTaskProps = {
-    tasks: number;
-    completedTasks: number;
+    tasksCount: number;
+    completedTasksCount: number;
 }

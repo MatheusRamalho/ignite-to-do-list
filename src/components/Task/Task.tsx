@@ -1,23 +1,40 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Trash } from '@phosphor-icons/react'
 
 import { TaskWrapper } from './Task.styles'
 import { TaskProps } from './Task.types'
 
-export const Task = ({ }: TaskProps) => {
-    const [isChecked, setIsChecked] = useState(false);
+export const Task = ({ id, title, isComplete = false }: TaskProps) => {
+    // const [isChecked, setIsChecked] = useState(false);
+
+    const handleToggleStatusTask = () => {
+        if (isComplete === true) {
+            isComplete = false;
+        } else {
+            isComplete = true;
+        }
+    }
+
+    const handleDeleteTask = (id: string) => {
+        console.log(id);
+    }
 
     return (
-        <TaskWrapper>
+        <TaskWrapper id={id}>
             <input
                 type="checkbox"
-                checked={isChecked}
-                onChange={e => setIsChecked(e.target.checked)}
+                checked={isComplete}
+                // onChange={e => setIsChecked(e.target.checked)}
+                onClick={handleToggleStatusTask}
             />
 
-            <p className={`${isChecked && 'line-through'}`}> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae? </p>
+            <p className={`${isComplete && 'line-through'}`}> {title} </p>
 
-            <button type="button" title="Deletar tarefa">
+            <button
+                type="button"
+                title="Deletar tarefa"
+                onClick={() => handleDeleteTask(id)}
+            >
                 <Trash size={24} color="#808080" />
             </button>
         </TaskWrapper>

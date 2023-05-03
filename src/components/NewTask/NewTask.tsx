@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { PlusCircle } from '@phosphor-icons/react'
 
 import { NewTaskWrapper } from './NewTask.styles'
@@ -6,8 +6,14 @@ import { NewTaskProps } from './NewTask.types'
 
 import logoSvg from '../../assets/logo-full.svg'
 
-export const NewTask = ({ }: NewTaskProps) => {
+export const NewTask = ({ onNewTask }: NewTaskProps) => {
     const [newTask, setNewTask] = useState('');
+
+    const handleCreateNewTask = (event: FormEvent) => {
+        event.preventDefault();
+        onNewTask(newTask);
+        setNewTask('');
+    }
 
     return (
         <NewTaskWrapper>
@@ -20,7 +26,7 @@ export const NewTask = ({ }: NewTaskProps) => {
                 <form
                     className="new-task-form"
                     id="formBanner"
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleCreateNewTask}
                 >
                     <input
                         required
@@ -28,6 +34,7 @@ export const NewTask = ({ }: NewTaskProps) => {
                         id="new-task-input"
                         name="new-text-input"
                         placeholder='Adicione uma nova tarefa...'
+                        value={newTask}
                         onChange={event => setNewTask(event.target.value)}
                     />
 

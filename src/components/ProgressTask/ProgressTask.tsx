@@ -1,15 +1,15 @@
 import { ProgressTaskWrapper } from "./ProgressTask.styles";
 import { ProgressTaskProps } from "./ProgressTask.types";
 
-export const ProgressTask = ({ tasks, completedTasks }: ProgressTaskProps) => {
+export const ProgressTask = ({ tasksCount, completedTasksCount }: ProgressTaskProps) => {
     return (
         <ProgressTaskWrapper>
             <div className="">
-                Tarefas criadas <span> {tasks} </span>
+                Tarefas criadas <span> {tasksCount} </span>
             </div>
 
             <div className="">
-                Concluídas <span> {completedTasks} de {tasks} </span>
+                Concluídas <span> {completedTasksCount} de {tasksCount} </span>
             </div>
         </ProgressTaskWrapper>
     );
