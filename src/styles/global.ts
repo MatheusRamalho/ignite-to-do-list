@@ -36,6 +36,17 @@ export default createGlobalStyle`
         --gray-700: #0D0D0D;
     }
 
+    ::-webkit-scrollbar {
+        width: 1rem;
+        padding-right: 0.25rem;
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 0.125rem;
+        background-color: var(--gray-500);
+    }
+
     :focus {
         outline: transparent;
         box-shadow: 0 0 0 2px var(--blue-500);
@@ -77,6 +88,7 @@ export default createGlobalStyle`
 
     .app-main {
         max-width: 1024px;
+        width: 100%;
         margin: 0 auto;
         padding: 8rem 1rem 1rem;
 

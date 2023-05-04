@@ -10,6 +10,19 @@ import { ProgressTask } from './components/ProgressTask'
 import { Task } from './components/Task'
 
 export const App = () => {
+	const handleAddNewTask = (taskTitle: string) => {
+		let newTaskList = [...tasks];
+
+		newTaskList.push({
+			id: uuidv4(),
+			title: taskTitle,
+			isComplete: false,
+			onDeleteTask: handleDeleteTask,
+			onToggleTask: handleAddNewTask,
+		});
+
+		setTasks(newTaskList);
+	}
 
 	const handleDeleteTask = (id: string) => {
 		let newTaskList = [...tasks];
@@ -24,34 +37,35 @@ export const App = () => {
 		setTasks(newTaskList);
 	}
 
-	const [tasks, setTasks] = useState<TaskProps[]>([
-		{ id: uuidv4(), isComplete: false, title: "01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
-		{ id: uuidv4(), isComplete: false, title: "02 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
-		{ id: uuidv4(), isComplete: true, title: "03 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask},
-		{ id: uuidv4(), isComplete: false, title: "04 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
-		{ id: uuidv4(), isComplete: true, title: "05 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask},
-	]);
-
-	const totalTasks = tasks.length;
-	const completeTasks = tasks.filter(task => task.isComplete === true);
-	const totalCompleteTasks = completeTasks.length;
-
-	const handleAddNewTask = (taskTitle: string) => {
+	const handleToggleCheck = (id: string) => {
 		let newTaskList = [...tasks];
 
-		newTaskList.push({
-			id: uuidv4(),
-			title: taskTitle,
-			isComplete: false,
-			onDeleteTask: handleDeleteTask,
+		newTaskList.filter((element) => {
+			if (element.id === id) {
+				var index = newTaskList.indexOf(element);
+
+				newTaskList[index].id = element.id;
+				newTaskList[index].title = element.title;
+				newTaskList[index].isComplete = element.isComplete === false ? true : false;
+				newTaskList[index].onDeleteTask = element.onDeleteTask;
+				newTaskList[index].onToggleTask = element.onToggleTask;
+			}
 		});
 
 		setTasks(newTaskList);
 	}
 
-	const handleToggleCheck = () => {
-		
-	}
+	const [tasks, setTasks] = useState<TaskProps[]>([
+		{ id: uuidv4(), isComplete: false, title: "01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask, onToggleTask: handleToggleCheck },
+		{ id: uuidv4(), isComplete: false, title: "02 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask, onToggleTask: handleToggleCheck },
+		{ id: uuidv4(), isComplete: true, title: "03 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask, onToggleTask: handleToggleCheck },
+		{ id: uuidv4(), isComplete: false, title: "04 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask, onToggleTask: handleToggleCheck },
+		{ id: uuidv4(), isComplete: true, title: "05 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask, onToggleTask: handleToggleCheck },
+	]);
+
+	const totalTasks = tasks.length;
+	const completeTasks = tasks.filter(task => task.isComplete === true);
+	const totalCompleteTasks = completeTasks.length;
 
 	return (
 		<div className="app">
@@ -75,6 +89,7 @@ export const App = () => {
 									title={task.title}
 									isComplete={task.isComplete}
 									onDeleteTask={handleDeleteTask}
+									onToggleTask={handleToggleCheck}
 								/>
 							);
 						})}
