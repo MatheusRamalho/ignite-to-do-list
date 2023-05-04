@@ -10,12 +10,26 @@ import { ProgressTask } from './components/ProgressTask'
 import { Task } from './components/Task'
 
 export const App = () => {
+
+	const handleDeleteTask = (id: string) => {
+		let newTaskList = [...tasks];
+
+		newTaskList.filter((element) => {
+			if (element.id === id) {
+				var index = newTaskList.indexOf(element);
+				newTaskList.splice(index, 1);
+			}
+		});
+
+		setTasks(newTaskList);
+	}
+
 	const [tasks, setTasks] = useState<TaskProps[]>([
-		{ id: uuidv4(), isComplete: false, title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?" },
-		{ id: uuidv4(), isComplete: false, title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?" },
-		{ id: uuidv4(), isComplete: true, title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?" },
-		{ id: uuidv4(), isComplete: false, title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?" },
-		{ id: uuidv4(), isComplete: true, title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?" },
+		{ id: uuidv4(), isComplete: false, title: "01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
+		{ id: uuidv4(), isComplete: false, title: "02 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
+		{ id: uuidv4(), isComplete: true, title: "03 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask},
+		{ id: uuidv4(), isComplete: false, title: "04 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask },
+		{ id: uuidv4(), isComplete: true, title: "05 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquam aliquid magni animi incidunt velit, soluta porro sunt ipsa a deserunt neque tempore laborum vitae?", onDeleteTask: handleDeleteTask},
 	]);
 
 	const totalTasks = tasks.length;
@@ -29,25 +43,30 @@ export const App = () => {
 			id: uuidv4(),
 			title: taskTitle,
 			isComplete: false,
+			onDeleteTask: handleDeleteTask,
 		});
 
 		setTasks(newTaskList);
+	}
+
+	const handleToggleCheck = () => {
+		
 	}
 
 	return (
 		<div className="app">
 			<GlobalStyle />
 
-			<div className="wrapper">
+			<div className="app-wrapper">
 				<NewTask onNewTask={handleAddNewTask} />
 
-				<main className="main">
+				<main className="app-main">
 					<ProgressTask
 						tasksCount={totalTasks}
 						completedTasksCount={totalCompleteTasks}
 					/>
 
-					<div className="content">
+					<div className="app-content">
 						{tasks && tasks.map(task => {
 							return (
 								<Task
@@ -55,6 +74,7 @@ export const App = () => {
 									id={task.id}
 									title={task.title}
 									isComplete={task.isComplete}
+									onDeleteTask={handleDeleteTask}
 								/>
 							);
 						})}

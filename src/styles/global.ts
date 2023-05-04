@@ -62,13 +62,28 @@ export default createGlobalStyle`
         color: var(--gray-200);
     }
 
-    main {
-        max-width: 1024px;
-        margin: 0 auto;
-        padding-top: 8rem;
+    .app {
+        width: 100%;
+        min-height: 100vh;
     }
 
-    .content {
+    .app-wrapper {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .app-main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 8rem 1rem 1rem;
+
+        flex: 1;
+    }
+
+    .app-content {
         margin-top: 2rem;
     }
 `;

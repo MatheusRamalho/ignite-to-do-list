@@ -1,22 +1,14 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import { Trash } from '@phosphor-icons/react'
 
 import { TaskWrapper } from './Task.styles'
 import { TaskProps } from './Task.types'
 
-export const Task = ({ id, title, isComplete = false }: TaskProps) => {
-    // const [isChecked, setIsChecked] = useState(false);
-
-    const handleToggleStatusTask = () => {
-        if (isComplete === true) {
-            isComplete = false;
-        } else {
-            isComplete = true;
-        }
-    }
+export const Task = ({ id, title, isComplete = false, onDeleteTask }: TaskProps) => {
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleDeleteTask = (id: string) => {
-        console.log(id);
+        onDeleteTask(id);
     }
 
     return (
@@ -24,8 +16,7 @@ export const Task = ({ id, title, isComplete = false }: TaskProps) => {
             <input
                 type="checkbox"
                 checked={isComplete}
-                // onChange={e => setIsChecked(e.target.checked)}
-                onClick={handleToggleStatusTask}
+                onChange={event => setIsChecked(event.target.checked)}
             />
 
             <p className={`${isComplete && 'line-through'}`}> {title} </p>
