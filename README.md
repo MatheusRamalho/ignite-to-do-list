@@ -38,7 +38,7 @@ App de lista de tarefas, onde é possivél adicionar uma tarefa, remover uma tar
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/zgDErEmdLUyseIag0fiHMY/Ignite-Feed-(Community)?node-id=0%3A1&t=faCzSwL9SdYtDqAd-1).
+Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/l89X0FuqNwkHFHFvW2uqC4/ToDo-List-(Copy)?node-id=0%3A1&t=gpGnHGCHijmE8yPy-1).
 
 ## :memo: Licença
 
