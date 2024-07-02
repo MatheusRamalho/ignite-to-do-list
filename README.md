@@ -51,7 +51,7 @@ Você pode visualizar o layout do projeto através [desse link](). É necessári
 
 ## 🚀 Deploy
 
-Você pode visualizar o deploy do projeto na vercel através [desse link](https://payment-mat.vercel.app/).
+Você pode visualizar o deploy do projeto na vercel através [desse link](https://to-do-list-mat.vercel.app/).
 
 <br />
 
